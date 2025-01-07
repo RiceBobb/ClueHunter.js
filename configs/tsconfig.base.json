@@ -8,8 +8,8 @@
       "allowJs": true,
       "declaration": true,
       "declarationMap": true,
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      "types": ["mocha", "node"]
     },
-    "files": ["../src/index.ts"]
-  }
-  
+    "include": ["../src/**/*", "../tests/**/*"]
+}

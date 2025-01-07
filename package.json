@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@rice-bobb/cluehunter",
   "version": "0.0.1",
   "description": "Find the exact evidence paragraph from the web page with full-local model.",
@@ -13,7 +14,7 @@
     "build:esm": "tsc -p ./configs/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
     "build:cjs": "tsc -p ./configs/tsconfig.cjs.json",
     "prepack": "npm run build",
-    "test": "test"
+    "test": "mocha --require ts-node/register --loader=ts-node/esm 'tests/**/*.spec.ts'"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,12 @@
   },
   "homepage": "https://github.com/RiceBobb/ClueHunter.js#readme",
   "devDependencies": {
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.5",
+    "chai": "^5.1.2",
+    "mocha": "^11.0.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "exports": {

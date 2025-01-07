@@ -14,8 +14,12 @@ I choose to follow the instructions from [this blod](https://velog.io/@surim014/
 
 ### Build
 
-`npm build`
+`npm run build`
 
 ### Publish
 
 `npm publish`
+
+### Test
+
+`npm test`
