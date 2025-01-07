@@ -1,6 +1,6 @@
 # ClueHunter.js
-Find the exact evidence paragraph from the web page with full-local model.
 
+Find the exact evidence paragraph from the web page with full-local model.
 
 # Installation
 
@@ -18,7 +18,10 @@ I choose to follow the instructions from [this blod](https://velog.io/@surim014/
 
 ### Publish
 
-`npm publish`
+```bash
+npm version <major|minor|patch>
+npm publish
+```
 
 ### Test
 
