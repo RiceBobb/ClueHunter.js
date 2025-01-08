@@ -8,6 +8,8 @@ Find the exact evidence paragraph from the web page with full-local model.
 
 I choose to follow the instructions from [this blod](https://velog.io/@surim014/Best-practice-for-creating-a-modern-npm-package).
 
+Need up to node.js 18.
+
 ### Install dependencies
 
 `npm install`
