@@ -1,9 +1,3 @@
-/**
- * Calculates the sum of two numbers
- * @param a First number
- * @param b Second number
- * @returns The sum of a and b
- */
-export function add(a: number, b: number): number {
-    return a + b;
-}
+import { bm25_search } from "./search-engine/bm25.js";
+
+export { bm25_search };
