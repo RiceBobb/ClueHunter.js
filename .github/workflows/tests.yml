@@ -17,4 +17,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm ci
+      - run: npm link
+      - run: npm link @rice-bobb/cluehunter
+      - name: Link package in tests folder
+        working-directory: ./tests
+        run: npm link @rice-bobb/cluehunter
       - run: npm test
