@@ -26,3 +26,27 @@ npm publish
 ### Test
 
 `npm test`
+
+### Build and test
+
+First build
+
+`npm run build`
+
+Then link the library
+
+`npm link`
+
+After that, run the link of library again at the root folder and the test folder.
+
+```
+npm link @rice-bobb/cluehunter
+cd tests
+npm link @rice-bobb/cluehunter
+```
+
+And run test!
+
+```
+npm test
+```

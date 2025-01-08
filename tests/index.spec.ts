@@ -1,7 +1,13 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
+import { add } from '@rice-bobb/cluehunter';
 
 describe('Sample Test Suite', () => {
+    it('should use the add function correctly', () => {
+        const result = add(2, 3);
+        expect(result).to.equal(5);
+    });
+
     it('should add two numbers correctly', () => {
         const result = 2 + 2;
         expect(result).to.equal(4);
