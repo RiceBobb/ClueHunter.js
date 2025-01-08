@@ -52,7 +52,6 @@
   },
   "dependencies": {
     "@langchain/community": "^0.3.22",
-    "@langchain/core": "^0.3.27",
-    "code": "^5.2.4"
+    "@langchain/core": "^0.3.27"
   }
 }
