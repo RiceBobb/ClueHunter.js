@@ -101,6 +101,7 @@ describe("Bm25 Sample Test Suite", async () => {
     const query = "맨까 새끼들은 어떤 감정이야?";
     const results = await bm25_search(query, ko_sample_passage_list);
     validation_results(results, ko_sample_passage_list);
+    console.log(results);
   });
 
   it("Bm25 English sample data test", async () => {
