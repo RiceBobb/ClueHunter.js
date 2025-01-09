@@ -49,5 +49,9 @@
         "default": "./lib/cjs/index.js"
       }
     }
+  },
+  "dependencies": {
+    "@langchain/community": "^0.3.22",
+    "@langchain/core": "^0.3.27"
   }
 }
