@@ -53,6 +53,7 @@
   "dependencies": {
     "@langchain/community": "^0.3.22",
     "@langchain/core": "^0.3.27",
+    "node-nlp": "^5.0.0-alpha.4",
     "wink-eng-lite-web-model": "^1.8.1",
     "wink-nlp": "^2.3.2"
   }
