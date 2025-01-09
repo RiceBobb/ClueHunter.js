@@ -49,9 +49,5 @@
         "default": "./lib/cjs/index.js"
       }
     }
-  },
-  "dependencies": {
-    "@huggingface/transformers": "^3.2.4",
-    "@xenova/transformers": "^2.17.2"
   }
 }
