@@ -1,11 +1,11 @@
-import { AutoTokenizer, XLMRobertaModel } from '@huggingface/transformers';
+import { AutoTokenizer, XLMRobertaModel } from '@xenova/transformers';
 
 let model: any;
 let tokenizer: any;
 
 async function setupModel() {
     const model_id = 'jinaai/jina-reranker-v1-tiny-en';
-    model = await XLMRobertaModel.from_pretrained(model_id, { dtype: 'fp32' });
+    model = await XLMRobertaModel.from_pretrained(model_id);
     tokenizer = await AutoTokenizer.from_pretrained(model_id);
 }
 
