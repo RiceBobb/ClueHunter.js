@@ -18,8 +18,6 @@ const test_no_punctuation_paragraph = `During my backpacking trip through Southe
 function validation_results(results: any[], expected_length: number) {
   expect(results).to.be.an("array");
   expect(results).to.have.lengthOf(expected_length);
-  expect(results[0].pageContent).to.be.an("string");
-  expect(results[0].metadata).to.be.an("object");
 }
 
 
@@ -29,14 +27,14 @@ describe("Wink splitter sentence splitter test", async () => {
     const results = wink_splitter(test_en_paragraph);
 
     validation_results(results, 19);
-    expect(results[0].pageContent).to.equal("During my backpacking trip through Southeast Asia, I found myself in a small village in Laos.");
+    expect(results[0]).to.equal("During my backpacking trip through Southeast Asia, I found myself in a small village in Laos.");
   });
 
   it("2) Korean sentence split", async () => {
     const result = wink_splitter(test_ko_paragraph);
 
     validation_results(result, 12);
-    expect(result[0].pageContent).to.equal("맨까 새끼들 부들부들하구나.");
+    expect(result[0]).to.equal("맨까 새끼들 부들부들하구나.");
   });
 
   it("3) Split English sentence bm25 test", async () => {
