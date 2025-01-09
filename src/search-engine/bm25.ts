@@ -1,9 +1,16 @@
 import { BM25Retriever } from "@langchain/community/retrievers/bm25";
 import { Document } from "@langchain/core/documents";
 
+function convert_arr_to_doc(split_text_arr: string[]): Document[] {
+  return split_text_arr.map((sentence) => ({
+    pageContent: sentence,
+    metadata: {},
+  }));
+}
+
 export async function bm25_search(
   query: string,
-  contents: Document[],
+  contents: string[],
   passage_limit = contents.length,
   showScore = true
 ): Promise<Document<Record<string, any>>[]> {
@@ -11,7 +18,9 @@ export async function bm25_search(
     throw new Error("Query and contents must be provided");
   }
 
-  const retriever = BM25Retriever.fromDocuments(contents, {
+  const passages = convert_arr_to_doc(contents);
+
+  const retriever = BM25Retriever.fromDocuments(passages, {
     k: passage_limit,
     includeScore: showScore,
   });
