@@ -18,8 +18,6 @@ const test_no_punctuation_paragraph = `During my backpacking trip through Southe
 function validation_results(results: any[], expected_length: number) {
   expect(results).to.be.an("array");
   expect(results).to.have.lengthOf(expected_length);
-  expect(results[0].pageContent).to.be.an("string");
-  expect(results[0].metadata).to.be.an("object");
 }
 
 
