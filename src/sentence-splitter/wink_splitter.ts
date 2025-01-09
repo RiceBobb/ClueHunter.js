@@ -20,7 +20,5 @@ export function wink_splitter(parsed_text: string): Document[] {
   const sentences = doc.sentences().out();
   const passages = convert_arr_to_doc(sentences);
 
-  console.log(passages);
-
   return passages;
 }
