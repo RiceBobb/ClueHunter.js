@@ -51,6 +51,7 @@
     }
   },
   "dependencies": {
+    "@huggingface/transformers": "^3.2.4",
     "@langchain/community": "^0.3.22",
     "@langchain/core": "^0.3.27",
     "wink-eng-lite-web-model": "^1.8.1",
