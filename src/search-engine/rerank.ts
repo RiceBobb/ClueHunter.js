@@ -1,4 +1,4 @@
-import { AutoTokenizer, XLMRobertaModel } from '@xenova/transformers';
+import { AutoTokenizer, XLMRobertaModel } from '@huggingface/transformers';
 
 let model: any;
 let tokenizer: any;
