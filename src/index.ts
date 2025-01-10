@@ -11,9 +11,9 @@ function wait(ms: number) {
   }
             
 
-export async function clueHunt(answer: string, parsed_text: string) {
+export async function clueHunt(answer: string, parsed_text: string, bm25_top_k: number = 50){
     const passages = wink_splitter(parsed_text);
-    const searched_passages_doc = await bm25_search(answer, passages);
+    const searched_passages_doc = await bm25_search(answer, passages, bm25_top_k);
     const searched_passages_arr = convert_doc_to_arr(searched_passages_doc);
     const reranked_results = await rerank(answer, searched_passages_arr,
         { top_k: 1, return_documents: true });
