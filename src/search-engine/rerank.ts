@@ -3,10 +3,16 @@ import { AutoTokenizer, XLMRobertaModel } from "@huggingface/transformers";
 let model: any;
 let tokenizer: any;
 
+function checkWebGPUSupport(): boolean {
+  return !!(typeof window !== 'undefined' &&
+    window.navigator &&
+    'gpu' in window.navigator);
+}
+
 async function setupModel(
-  model_id: string = "jinaai/jina-reranker-v1-tiny-en",
-  webgpu_enabled: boolean = true
+  model_id: string = "jinaai/jina-reranker-v1-tiny-en"
 ): Promise<void> {
+  const webgpu_enabled = checkWebGPUSupport();
   const options: { device?: 'webgpu' } = webgpu_enabled ? { device: 'webgpu' } : {};
   
   model = await XLMRobertaModel.from_pretrained(model_id, options);
@@ -20,13 +26,19 @@ export async function rerank(
   options: {
     top_k?: number;
     return_documents?: boolean;
+    model_id?: string;
   } = {}
 ): Promise<{ corpus_id: number; score: number; text?: string }[]> {
-  if (!model || !tokenizer) {
-    await setupModel();
-  }
 
-  const { top_k = undefined, return_documents = false } = options;
+  const { 
+    top_k = undefined, 
+    return_documents = false,
+    model_id = "jinaai/jina-reranker-v1-tiny-en",
+  } = options;
+
+  if (!model || !tokenizer) {
+    await setupModel(model_id);
+  }
 
   const inputs = tokenizer(new Array(documents.length).fill(query), {
     text_pair: documents,
