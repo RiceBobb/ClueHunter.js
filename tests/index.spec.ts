@@ -62,7 +62,7 @@ function wait(ms: number) {
 describe("ClueHunt 50 Test", async () => {
   it("should find relevant sentences", async () => {
 
-    const results = await clueHunt(testQuery, testDocuments);
+    const results = await clueHunt(testQuery, testDocuments, 50, 'cpu');
 
     expect(results).to.be.an("string");
   });
