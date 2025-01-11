@@ -60,7 +60,7 @@ describe('Rerank 50 Test', () => {
   it('should find relevant sentences', async function() {
     this.timeout(10000);
 
-    const results = await rerank(query, documents, { return_documents: true, top_k: 1 });
+    const results = await rerank(query, documents, { return_documents: true, top_k: 1, device: 'cpu' });
     expect(results).to.be.an('array');
     expect(results[0].corpus_id).to.be.an('number');
     expect(results[0].score).to.be.an('number');

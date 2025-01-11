@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@rice-bobb/cluehunter",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Find the exact evidence paragraph from the web page with full-local model.",
   "types": "./lib/cjs/types/index.d.ts",
   "main": "./lib/cjs/index.js",
