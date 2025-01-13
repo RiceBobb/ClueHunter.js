@@ -1,8 +1,9 @@
 import tokenizer from "sbd";
 
-/**
- * Sentence Boundary Detection (SBD) splitter
-  optional_options parameter:
+/*
+  Sentence Boundary Detection (SBD) splitter
+
+  Optional_options parameter:
   - newline_boundaries, force sentence split at newlines
   - html_boundaries, force sentence split at specific tags (br, and closing p, div, ul, ol)
   - sanitize: If you don't expect nor want html in your text.
