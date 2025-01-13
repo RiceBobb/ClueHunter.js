@@ -11,8 +11,8 @@ function convert_arr_to_doc(split_text_arr: string[]): Document[] {
 export async function bm25_search(
   query: string,
   contents: string[],
-  passage_limit = contents.length,
-  showScore = true
+  passage_limit: number = contents.length,
+  showScore: boolean = true
 ): Promise<Document<Record<string, any>>[]> {
   if (!query || !contents) {
     throw new Error("Query and contents must be provided");
