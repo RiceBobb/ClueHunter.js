@@ -9,8 +9,8 @@ export function sbd_splitter(parsed_text: string): string[] {
   - allowed_tags: To sanitize html, the library santize-html is used. You can pass the allowed tags option.
   - preserve_whitespace: Preserve the literal whitespace between words and sentences (otherwise, internal spaces are normalized to a single space char, and inter-sentence whitespace is omitted). Preserve whitespace has no effect if either newline_boundaries or html_boundaries is specified.
   - abbreviations: list of abbreviations to override the original ones for use with other languages. Don't put dots in your custom abbreviations.
-  `;
-  
+  `
+
   if (!parsed_text) {
     throw new Error("Parsed text and contents must be provided");
   }
