@@ -1,4 +1,3 @@
-import { wink_splitter } from "./sentence-splitter/wink_splitter.js";
 import { sbd_splitter } from "./sentence-splitter/sbd_splitter.js";
 import { bm25_search } from "./search-engine/bm25.js";
 import { rerank } from "./search-engine/rerank.js";
@@ -37,4 +36,4 @@ export async function clueHunt(
   return reranked_results[0].text;
 }
 
-export { bm25_search, wink_splitter, sbd_splitter, rerank };
+export { bm25_search, sbd_splitter, rerank };
