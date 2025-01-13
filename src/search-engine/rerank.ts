@@ -40,9 +40,9 @@ export async function rerank(
     truncation: true,
   });
 
-  console.time("rerank model inference");
+  // console.time("rerank model inference");
   const { logits } = await model(inputs);
-  console.timeEnd("rerank model inference");
+  // console.timeEnd("rerank model inference");
   return logits
     .sigmoid()
     .tolist()

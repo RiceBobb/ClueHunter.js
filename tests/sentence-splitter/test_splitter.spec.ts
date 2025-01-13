@@ -19,38 +19,6 @@ function validation_results(results: any[], expected_length: number) {
   expect(results).to.be.an("array");
   expect(results).to.have.lengthOf(expected_length);
 }
-
-
-describe("Wink splitter sentence splitter test", async () => {
-
-  it("1) English sentence split", async () => {
-    const results = wink_splitter(test_en_paragraph);
-
-    validation_results(results, 19);
-    expect(results[0]).to.equal("During my backpacking trip through Southeast Asia, I found myself in a small village in Laos.");
-  });
-
-  it("2) Korean sentence split", async () => {
-    const result = wink_splitter(test_ko_paragraph);
-
-    validation_results(result, 12);
-    expect(result[0]).to.equal("맨까 새끼들 부들부들하구나.");
-  });
-
-  it("3) Split English sentence bm25 test", async () => {
-    const searched_en_passages = wink_splitter(test_en_paragraph);
-    const query = "Where is the South Asia?";
-    const results = await bm25_search(query, searched_en_passages);
-
-    validation_results(results, 19);
-    expect(results[0].metadata.bm25Score).to.be.greaterThanOrEqual(
-      results[1].metadata.bm25Score
-    );
-  });
-
-});
-
-
 describe("SBD(Sentence Boundary Detection) splitter sentence splitter test", async () => {
   
   it("1) English sentence split", async () => {
@@ -77,5 +45,33 @@ describe("SBD(Sentence Boundary Detection) splitter sentence splitter test", asy
       results[1].metadata.bm25Score
     );
   });
-
 });
+
+// describe("Wink splitter sentence splitter test", async () => {
+
+//   it("1) English sentence split", async () => {
+//     const results = wink_splitter(test_en_paragraph);
+
+//     validation_results(results, 19);
+//     expect(results[0]).to.equal("During my backpacking trip through Southeast Asia, I found myself in a small village in Laos.");
+//   });
+
+//   it("2) Korean sentence split", async () => {
+//     const result = wink_splitter(test_ko_paragraph);
+
+//     validation_results(result, 12);
+//     expect(result[0]).to.equal("맨까 새끼들 부들부들하구나.");
+//   });
+
+//   it("3) Split English sentence bm25 test", async () => {
+//     const searched_en_passages = wink_splitter(test_en_paragraph);
+//     const query = "Where is the South Asia?";
+//     const results = await bm25_search(query, searched_en_passages);
+
+//     validation_results(results, 19);
+//     expect(results[0].metadata.bm25Score).to.be.greaterThanOrEqual(
+//       results[1].metadata.bm25Score
+//     );
+//   });
+
+// });

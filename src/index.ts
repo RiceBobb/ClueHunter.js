@@ -20,14 +20,17 @@ export async function clueHunt(
   search_engine: SearchEngine = bm25_search,
   reranker: Reranker = rerank
 ) {
-    
+
   const passages = splitter(parsed_text);
+
   const searched_passages_doc = await search_engine(
     answer,
     passages,
     bm25_top_k
   );
+
   const searched_passages_arr = convert_doc_to_arr(searched_passages_doc);
+
   const reranked_results = await reranker(answer, searched_passages_arr, {
     top_k: 1,
     return_documents: true,
