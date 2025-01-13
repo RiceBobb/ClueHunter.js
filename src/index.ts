@@ -16,9 +16,6 @@ export async function clueHunt(
   parsed_text: string,
   bm25_top_k: number = 50,
   device: "cpu" | "webgpu" = "cpu",
-//   splitter: Splitter = sbd_splitter,
-//   search_engine: SearchEngine = bm25_search,
-//   reranker: Reranker = rerank
 ) {
 
   const passages = sbd_splitter(parsed_text);
