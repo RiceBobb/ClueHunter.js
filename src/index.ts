@@ -16,14 +16,14 @@ export async function clueHunt(
   parsed_text: string,
   bm25_top_k: number = 50,
   device: "cpu" | "webgpu" = "cpu",
-  splitter: Splitter = sbd_splitter,
-  search_engine: SearchEngine = bm25_search,
-  reranker: Reranker = rerank
+//   splitter: Splitter = sbd_splitter,
+//   search_engine: SearchEngine = bm25_search,
+//   reranker: Reranker = rerank
 ) {
 
-  const passages = splitter(parsed_text);
+  const passages = sbd_splitter(parsed_text);
 
-  const searched_passages_doc = await search_engine(
+  const searched_passages_doc = await bm25_search(
     answer,
     passages,
     bm25_top_k
@@ -31,7 +31,7 @@ export async function clueHunt(
 
   const searched_passages_arr = convert_doc_to_arr(searched_passages_doc);
 
-  const reranked_results = await reranker(answer, searched_passages_arr, {
+  const reranked_results = await rerank(answer, searched_passages_arr, {
     top_k: 1,
     return_documents: true,
     device: device,
