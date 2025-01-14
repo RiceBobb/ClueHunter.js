@@ -54,10 +54,6 @@ const testDocuments = `No Dong-gyu is a fan of Havertz.
         All-natural pet food for dogs with allergies.
         Yoga mats made from recycled materials.`;
 
-function wait(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 describe("ClueHunt 50 Test", async function () {
   this.timeout(4000);
 
