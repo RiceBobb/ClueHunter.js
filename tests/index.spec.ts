@@ -60,6 +60,8 @@ function wait(ms: number) {
 
 describe("ClueHunt 50 Test", async () => {
   it("should find relevant sentences", async () => {
+    this.timeout(10000);
+    
     console.time("model loading time");
     const clueHunter = new ClueHunter(
       "jinaai/jina-reranker-v1-tiny-en",

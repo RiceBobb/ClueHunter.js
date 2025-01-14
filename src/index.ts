@@ -2,6 +2,7 @@ import { sbd_splitter } from "./sentence-splitter/sbd_splitter.js";
 import { bm25_search } from "./search-engine/bm25.js";
 import { rerank } from "./search-engine/rerank.js";
 import { AutoTokenizer, XLMRobertaModel } from "@huggingface/transformers";
+import { merge_sentences } from "./search-engine/merge_sentence.js";
 
 function convert_doc_to_arr(results: any[]): string[] {
   return results.map((result) => result.pageContent);
@@ -11,17 +12,20 @@ export class ClueHunter {
   private model: any;
   private tokenizer: any;
   private bm25_top_k: number;
+  private merge_counts: number[];
 
   constructor(
     model_id?: string,
     device: "cpu" | "webgpu" = "cpu",
-    bm25_top_k: number = 50
+    bm25_top_k: number = 50,
+    merge_counts: number[] = [2, 3]
   ) {
     device = device;
     this.bm25_top_k = bm25_top_k;
     (async () => {
       await this.setupModel(model_id, device);
     })();
+    this.merge_counts = merge_counts
   }
 
   async setupModel(
@@ -39,10 +43,12 @@ export class ClueHunter {
     const passages = sbd_splitter(parsed_text);
     console.timeEnd("SBD splitting");
 
+    const merged_sentences = await merge_sentences(passages, this.merge_counts);
+
     console.time("BM25 search");
     const searched_passages_doc = await bm25_search(
       answer,
-      passages,
+      merged_sentences,
       this.bm25_top_k
     );
     console.timeEnd("BM25 search");
@@ -73,4 +79,4 @@ export class ClueHunter {
   }
 }
 
-export { bm25_search, sbd_splitter, rerank };
+export { bm25_search, sbd_splitter, rerank, merge_sentences };
