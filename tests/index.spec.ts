@@ -75,7 +75,7 @@ describe("ClueHunt 50 Test", async function () {
     );
     console.timeEnd("model loading time");
 
-    wait(10);
+    await wait(10);
 
     const results = await clueHunter.huntingClues(testQuery, testDocuments);
 
