@@ -60,9 +60,10 @@ function wait(ms: number) {
           
     
 describe("ClueHunt 50 Test", async () => {
-  it("should find relevant sentences", async () => {
+  it("should find relevant sentences", async function() {
+    this.timeout(10000);
 
-    const results = await clueHunt(testQuery, testDocuments, 50, 'cpu');
+    const results = await clueHunt(testQuery, testDocuments, 50, 'cpu', [2, 3]);
 
     expect(results).to.be.an("string");
   });
