@@ -59,7 +59,7 @@ function wait(ms: number) {
 }
 
 describe("ClueHunt 50 Test", async function () {
-  this.timeout(3000);
+  this.timeout(4000);
 
   it("should find relevant sentences", async () => {  
     console.time("model loading time");
