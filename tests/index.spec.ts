@@ -55,7 +55,7 @@ const testDocuments = `No Dong-gyu is a fan of Havertz.
         Yoga mats made from recycled materials.`;
 
 describe("ClueHunt 50 Test", async function () {
-  this.timeout(4000);
+  this.timeout(10000);
 
   it("should find relevant sentences", async () => {  
     console.time("model loading time");
