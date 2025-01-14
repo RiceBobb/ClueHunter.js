@@ -8,14 +8,6 @@ function convert_doc_to_arr(results: any[]): string[] {
   return results.map((result) => result.pageContent);
 }
 
-function wait(seconds: number): Promise<void> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, seconds * 1000); // seconds를 milliseconds로 변환
-  });
-}
-
 export class ClueHunter {
   private model: any;
   private tokenizer: any;
