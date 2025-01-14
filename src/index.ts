@@ -35,17 +35,25 @@ export class ClueHunter {
   }
 
   async huntingClues(answer: string, parsed_text: string): Promise<string> {
+    console.time("SBD splitting");
     const passages = sbd_splitter(parsed_text);
+    console.timeEnd("SBD splitting");
 
+    console.time("BM25 search");
     const searched_passages_doc = await bm25_search(
       answer,
       passages,
       this.bm25_top_k
     );
+    console.timeEnd("BM25 search");
 
     const searched_passages_arr = convert_doc_to_arr(searched_passages_doc);
 
+    console.time("Rerank setup additional time");
     await this.setupModel();
+    console.timeEnd("Rerank setup additional time");
+
+    console.time("Rerank");
     const reranked_results = await rerank(
       answer,
       searched_passages_arr,
@@ -53,6 +61,7 @@ export class ClueHunter {
       this.tokenizer,
       { top_k: 1, return_documents: true }
     );
+    console.timeEnd("Rerank");
 
     if (reranked_results.length > 0 && reranked_results[0].text) {
       return reranked_results[0].text;

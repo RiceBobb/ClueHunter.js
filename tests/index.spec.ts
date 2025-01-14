@@ -55,17 +55,21 @@ const testDocuments = `No Dong-gyu is a fan of Havertz.
         Yoga mats made from recycled materials.`;
 
 function wait(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
-          
-    
+
 describe("ClueHunt 50 Test", async () => {
   it("should find relevant sentences", async () => {
-    const clueHunter = new ClueHunter('jinaai/jina-reranker-v1-tiny-en', 'cpu', 50);
+    console.time("model loading time");
+    const clueHunter = new ClueHunter(
+      "jinaai/jina-reranker-v1-tiny-en",
+      "cpu",
+      50
+    );
+    console.timeEnd("model loading time");
 
     const results = await clueHunter.huntingClues(testQuery, testDocuments);
 
     expect(results).to.be.an("string");
   });
-  
 });
