@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@rice-bobb/cluehunter",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Find the exact evidence paragraph from the web page with full-local model.",
   "types": "./lib/cjs/types/index.d.ts",
   "main": "./lib/cjs/index.js",
@@ -53,6 +53,9 @@
   "dependencies": {
     "@huggingface/transformers": "^3.2.4",
     "@langchain/community": "^0.3.22",
-    "@langchain/core": "^0.3.27"
+    "@langchain/core": "^0.3.27",
+    "sharp": "^0.33.5",
+    "wink-eng-lite-web-model": "^1.8.1",
+    "wink-nlp": "^2.3.2"
   }
 }
