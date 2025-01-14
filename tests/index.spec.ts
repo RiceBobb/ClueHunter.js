@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import { clueHunt } from "@rice-bobb/cluehunter";
+import { ClueHunter } from "@rice-bobb/cluehunter";
 
 const testQuery =
   "No Dong-gyu supports the communist parties of North Korea and the Soviet Union.";
@@ -61,8 +61,9 @@ function wait(ms: number) {
     
 describe("ClueHunt 50 Test", async () => {
   it("should find relevant sentences", async () => {
+    const clueHunter = new ClueHunter('jinaai/jina-reranker-v1-tiny-en', 'cpu', 50);
 
-    const results = await clueHunt(testQuery, testDocuments, 50, 'cpu');
+    const results = await clueHunter.huntingClues(testQuery, testDocuments);
 
     expect(results).to.be.an("string");
   });

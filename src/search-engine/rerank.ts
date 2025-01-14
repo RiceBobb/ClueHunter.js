@@ -1,37 +1,21 @@
-import { AutoTokenizer, XLMRobertaModel } from "@huggingface/transformers";
-
-let model: any;
-let tokenizer: any;
-
-async function setupModel(
-  model_id: string = "jinaai/jina-reranker-v1-tiny-en",
-  device: 'cpu' | 'webgpu' = 'cpu',
-): Promise<void> {
-  model = await XLMRobertaModel.from_pretrained(model_id, {device: device});
-  tokenizer = await AutoTokenizer.from_pretrained(model_id);
-}
-
-
 export async function rerank(
   query: string,
   documents: string[],
+  model: any,
+  tokenizer: any,
   options: {
-    top_k?: number;
+    top_k?: any;
     return_documents?: boolean;
-    model_id?: string;
-    device?: 'cpu' | 'webgpu';
   } = {}
 ): Promise<{ corpus_id: number; score: number; text?: string }[]> {
 
   const { 
     top_k = undefined, 
     return_documents = false,
-    model_id = "jinaai/jina-reranker-v1-tiny-en",
-    device = "cpu",
   } = options;
 
   if (!model || !tokenizer) {
-    await setupModel(model_id, device);
+    throw new TypeError("Model and tokenizer must be provided");
   }
 
   const inputs = tokenizer(new Array(documents.length).fill(query), {
