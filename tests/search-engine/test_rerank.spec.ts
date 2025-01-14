@@ -74,7 +74,7 @@ describe('Rerank 50 Test', () => {
     });
     const tokenizer = await AutoTokenizer.from_pretrained("jinaai/jina-reranker-v1-tiny-en");
 
-    await wait(0.5);  // For test code pass
+    await wait(5);  // For test code pass
 
     const results = await rerank(query, documents, model, tokenizer, { return_documents: true, top_k: 1 });
     expect(results).to.be.an('array');
