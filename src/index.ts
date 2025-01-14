@@ -45,6 +45,7 @@ export class ClueHunter {
 
     const searched_passages_arr = convert_doc_to_arr(searched_passages_doc);
 
+    await this.setupModel();
     const reranked_results = await rerank(
       answer,
       searched_passages_arr,
