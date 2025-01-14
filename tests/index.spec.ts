@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import { clueHunt } from "@rice-bobb/cluehunter";
+import { ClueHunter } from "@rice-bobb/cluehunter";
 
 const testQuery =
   "No Dong-gyu supports the communist parties of North Korea and the Soviet Union.";
@@ -55,17 +55,24 @@ const testDocuments = `No Dong-gyu is a fan of Havertz.
         Yoga mats made from recycled materials.`;
 
 function wait(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
-          
-    
-describe("ClueHunt 50 Test", async () => {
-  it("should find relevant sentences", async function() {
-    this.timeout(10000);
 
-    const results = await clueHunt(testQuery, testDocuments, 50, 'cpu', [2, 3]);
+describe("ClueHunt 50 Test", async function () {
+  this.timeout(4000);
+
+  it("should find relevant sentences", async () => {  
+    console.time("model loading time");
+    const clueHunter = new ClueHunter(
+      "jinaai/jina-reranker-v1-tiny-en",
+      "cpu",
+      50,
+      [2, 3]
+    );
+    console.timeEnd("model loading time");
+
+    const results = await clueHunter.huntingClues(testQuery, testDocuments);
 
     expect(results).to.be.an("string");
   });
-  
 });

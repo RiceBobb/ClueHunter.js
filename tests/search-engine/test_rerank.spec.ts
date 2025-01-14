@@ -1,6 +1,7 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { rerank } from '@rice-bobb/cluehunter';
+import { AutoTokenizer, XLMRobertaModel } from "@huggingface/transformers";
 
 const query = "노동규는 공산당을 지지한다";
 const documents = [
@@ -60,7 +61,12 @@ describe('Rerank 50 Test', () => {
   it('should find relevant sentences', async function() {
     this.timeout(10000);
 
-    const results = await rerank(query, documents, { return_documents: true, top_k: 1, device: 'cpu' });
+    const model = await XLMRobertaModel.from_pretrained("jinaai/jina-reranker-v1-tiny-en", {
+      device: 'cpu',
+    });
+    const tokenizer = await AutoTokenizer.from_pretrained("jinaai/jina-reranker-v1-tiny-en");
+
+    const results = await rerank(query, documents, model, tokenizer, { return_documents: true, top_k: 1 });
     expect(results).to.be.an('array');
     expect(results[0].corpus_id).to.be.an('number');
     expect(results[0].score).to.be.an('number');
