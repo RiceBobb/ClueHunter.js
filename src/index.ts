@@ -16,7 +16,7 @@ export class ClueHunter {
 
   constructor(
     model_id?: string,
-    device: "cpu" | "webgpu" = "cpu",
+    device: "wasm" | "webgpu" | "cpu" = "wasm",
     bm25_top_k: number = 50,
     merge_counts: number[] = [2, 3]
   ) {
@@ -29,7 +29,7 @@ export class ClueHunter {
 
   async setupModel(
     model_id: string = "jinaai/jina-reranker-v1-tiny-en",
-    device: "cpu" | "webgpu" = "cpu"
+    device: "wasm" | "webgpu" | "cpu" = "wasm"
   ): Promise<void> {
     this.model = await XLMRobertaModel.from_pretrained(model_id, {
       device: device,
@@ -53,10 +53,7 @@ export class ClueHunter {
     console.timeEnd("BM25 search");
 
     const searched_passages_arr = convert_doc_to_arr(searched_passages_doc);
-
-    console.time("Rerank setup additional time");
-    await this.setupModel();
-    console.timeEnd("Rerank setup additional time");
+    
 
     console.time("Rerank");
     const reranked_results = await rerank(

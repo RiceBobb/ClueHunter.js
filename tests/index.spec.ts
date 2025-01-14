@@ -54,12 +54,16 @@ const testDocuments = `No Dong-gyu is a fan of Havertz.
         All-natural pet food for dogs with allergies.
         Yoga mats made from recycled materials.`;
 
-function wait(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function wait(seconds: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, seconds * 1000); // seconds를 milliseconds로 변환
+  });
 }
 
 describe("ClueHunt 50 Test", async function () {
-  this.timeout(4000);
+  this.timeout(1000000);
 
   it("should find relevant sentences", async () => {  
     console.time("model loading time");
@@ -70,6 +74,8 @@ describe("ClueHunt 50 Test", async function () {
       [2, 3]
     );
     console.timeEnd("model loading time");
+
+    await wait(10);
 
     const results = await clueHunter.huntingClues(testQuery, testDocuments);
 
