@@ -54,10 +54,6 @@ export class ClueHunter {
 
     const searched_passages_arr = convert_doc_to_arr(searched_passages_doc);
 
-    console.time("Rerank setup additional time");
-    await this.setupModel();
-    console.timeEnd("Rerank setup additional time");
-
     console.time("Rerank");
     const reranked_results = await rerank(
       answer,
