@@ -1,10 +1,12 @@
+import { PreTrainedModel, PreTrainedTokenizer } from "@huggingface/transformers";
+
 export async function rerank(
   query: string,
   documents: string[],
-  model: any,
-  tokenizer: any,
+  model: PreTrainedModel,
+  tokenizer: PreTrainedTokenizer,
   options: {
-    top_k?: any;
+    top_k?: number;
     return_documents?: boolean;
   } = {}
 ): Promise<{ corpus_id: number; score: number; text?: string }[]> {

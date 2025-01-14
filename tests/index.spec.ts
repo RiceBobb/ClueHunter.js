@@ -58,7 +58,7 @@ function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-describe("ClueHunt 50 Test", async () => {
+describe("ClueHunt 50 Test", async function () {
   it("should find relevant sentences", async () => {
     this.timeout(10000);
     
@@ -66,7 +66,8 @@ describe("ClueHunt 50 Test", async () => {
     const clueHunter = new ClueHunter(
       "jinaai/jina-reranker-v1-tiny-en",
       "cpu",
-      50
+      50,
+      [2, 3]
     );
     console.timeEnd("model loading time");
 

@@ -56,24 +56,15 @@ const documents = [
     "항상 긍정적인 태도를 유지하려고 노력한다.",
     "오늘은 특별한 일이 있어 기분이 좋다.",
 ];
-  
-let model: any;
-let tokenizer: any;
-
-async function setupModel(
-  model_id: string = "jinaai/jina-reranker-v1-tiny-en",
-  device: "cpu" | "webgpu" = "cpu"
-): Promise<void> {
-  model = await XLMRobertaModel.from_pretrained(model_id, {
-    device: device,
-  });
-  tokenizer = await AutoTokenizer.from_pretrained(model_id);
-}
 
 describe('Rerank 50 Test', () => {
   it('should find relevant sentences', async function() {
     this.timeout(10000);
-    await setupModel();
+
+    const model = await XLMRobertaModel.from_pretrained("jinaai/jina-reranker-v1-tiny-en", {
+      device: 'cpu',
+    });
+    const tokenizer = await AutoTokenizer.from_pretrained("jinaai/jina-reranker-v1-tiny-en");
 
     const results = await rerank(query, documents, model, tokenizer, { return_documents: true, top_k: 1 });
     expect(results).to.be.an('array');
