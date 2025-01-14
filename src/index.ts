@@ -2,10 +2,6 @@ import { sbd_splitter } from "./sentence-splitter/sbd_splitter.js";
 import { bm25_search } from "./search-engine/bm25.js";
 import { rerank } from "./search-engine/rerank.js";
 
-type Splitter = typeof sbd_splitter;
-type SearchEngine = typeof bm25_search;
-type Reranker = typeof rerank;
-
 function convert_doc_to_arr(results: any[]): string[] {
   return results.map((result) => result.pageContent);
 }
