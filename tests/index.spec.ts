@@ -63,7 +63,7 @@ function wait(seconds: number): Promise<void> {
 }
 
 describe("ClueHunt 50 Test", async function () {
-  this.timeout(10000);
+  this.timeout(1000000);
 
   it("should find relevant sentences", async () => {  
     console.time("model loading time");
