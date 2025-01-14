@@ -57,6 +57,14 @@ const documents = [
     "오늘은 특별한 일이 있어 기분이 좋다.",
 ];
 
+function wait(seconds: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, seconds * 1000); // seconds를 milliseconds로 변환
+  });
+}
+
 describe('Rerank 50 Test', () => {
   it('should find relevant sentences', async function() {
     this.timeout(10000);
@@ -65,6 +73,8 @@ describe('Rerank 50 Test', () => {
       device: 'cpu',
     });
     const tokenizer = await AutoTokenizer.from_pretrained("jinaai/jina-reranker-v1-tiny-en");
+
+    await wait(0.5);  // For test code pass
 
     const results = await rerank(query, documents, model, tokenizer, { return_documents: true, top_k: 1 });
     expect(results).to.be.an('array');
