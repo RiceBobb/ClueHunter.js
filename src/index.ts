@@ -20,7 +20,6 @@ export class ClueHunter {
     bm25_top_k: number = 50,
     merge_counts: number[] = [2, 3]
   ) {
-    device = device;
     this.bm25_top_k = bm25_top_k;
     (async () => {
       await this.setupModel(model_id, device);
